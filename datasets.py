@@ -11,10 +11,6 @@ import scipy.io as sio
 import seaborn as sns
 import pandas as pd
 
-output_dir = './output'
-data_dir = './data'
-train_dir = './data/train'
-test_dir = './data/test'
 
 train_data = ['mosaic1_train.mat',
               'training_mask.mat']
@@ -168,7 +164,7 @@ quads16_features = ['q1', 'q2', 'q3', 'q4',
                     ]
 # quadrants = 4
 quads4_features = ['q1', 'q2',
-                        'q3'
+                         'q3'
                    ]
 
 # for quadrants = 4, the selected features are
