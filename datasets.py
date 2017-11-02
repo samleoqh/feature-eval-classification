@@ -18,10 +18,10 @@ train_data = ['mosaic1_train.mat',
 test_data = ['mosaic2_test.mat',
              'mosaic3_test.mat']
 
-texturekey = ['texture1',
-              'texture2',
-              'texture3',
-              'texture4'
+angle_oder = ['angle-0',
+              'angle-45',
+              'angle-90',
+              'angle-135'
               ]
 
 # original data used to analyse textures glcm style
@@ -46,163 +46,91 @@ textures = {'texture1':['texture1dx1dy0.mat',           # angle 0 degree
                         'texture4dxmin1dymin1.mat']     # angle 135 degree
             }
 
-# ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# feature images extracted by different algorithms
-# use these different features set to train gaussian classifier
-# to compare the performance by related test sets
 
-train_set0 = ['contrast_img_w31d1_0_angle_mosaic1_train.png',
-              'contrast_img_w31d1_135_angle_mosaic1_train.png',
-              'homogeneity_img_w31d1_0_angle_mosaic1_train.png',
-              'homogeneity_img_w31d1_135_angle_mosaic1_train.png'
-              ]
+cnfg_set0 = {
+    'group':        ['texture'], # ['quadrant-4', 'quadrant-16','texture'],
+    'angle':        ['0','135'],
+    'quadrant-4':   [],
+    'quadrant-16':  [],
+    'texture':      ['contrast', 'homogeneity'],
+    'infor':    ['train gaussian classifier with texture features',
+                 'test gaussian classifier with texture features',
+                 'test gaussian classifier with texture features' ],
+    'images':   ['cnfg_set0_classified_test1.png',
+                 'cnfg_set0_classified_test2.png' ],
+    'confmx':   ['cnfg_set0_eval_results_of_test1.png',
+                 'cnfg_set0_eval_results_of_test2.png']
+}
 
-test1_set0 = ['contrast_img_w31d1_0_angle_mosaic2_test.png',
-              'contrast_img_w31d1_135_angle_mosaic2_test.png',
-              'homogeneity_img_w31d1_0_angle_mosaic2_test.png',
-              'homogeneity_img_w31d1_135_angle_mosaic2_test.png'
-              ]
+cnfg_set1 = {
+    'group':        ['quadrant-16'], # ['quadrant-4', 'quadrant-16','texture'],
+    'angle':        ['0','135'],
+    'quadrant-4':   [],
+    'quadrant-16':  ['q2','q3','q7'],
+    'texture':      ['contrast', 'homogeneity'],
+    'infor':    ['train gaussian classifier with cnfg_set1',
+                 'test gaussian classifier with cnfg_set1',
+                 'test gaussian classifier with cnfg_set1' ],
+    'images':   ['cnfg_set1_classified_test1.png',
+                 'cnfg_set1_classified_test2.png' ],
+    'confmx':   ['cnfg_set1_eval_results_of_test1.png',
+                 'cnfg_set1_eval_results_of_test2.png']
+}
 
-test2_set0 = ['contrast_img_w31d1_0_angle_mosaic3_test.png',
-              'contrast_img_w31d1_135_angle_mosaic3_test.png',
-              'homogeneity_img_w31d1_0_angle_mosaic3_test.png',
-              'homogeneity_img_w31d1_135_angle_mosaic3_test.png'
-              ]
+cnfg_set2 = {
+    'group':        ['quadrant-4', 'quadrant-16'], # ['quadrant-4', 'quadrant-16','texture'],
+    'angle':        ['0','135'],
+    'quadrant-4':   ['q2'],
+    'quadrant-16':  ['q2','q3','q10'],
+    'texture':      ['contrast', 'homogeneity'],
+    'infor':    ['train gaussian classifier with cnfg_set2',
+                 'test gaussian classifier with cnfg_set2',
+                 'test gaussian classifier with cnfg_set2' ],
+    'images':   ['cnfg_set2_classified_test1.png',
+                 'cnfg_set2_classified_test2.png' ],
+    'confmx':   ['cnfg_set2_eval_results_of_test1.png',
+                 'cnfg_set2_eval_results_of_test2.png']
+}
 
-train_set1 = ['quadrant-4_q1_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-4_q1_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-4_q2_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-4_q2_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-4_q3_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-4_q3_img_w31d1_135_angle_mosaic1_train.png'
-              ]
+cnfg_set3 = {
+    'group':        ['quadrant-4', 'quadrant-16','texture'],
+    'angle':        ['0','135'],
+    'quadrant-4':   [],
+    'quadrant-16':  ['q10'],
+    'texture':      ['contrast', 'homogeneity'],
+    'infor':    ['train gaussian classifier with cnfg_set3',
+                 'test gaussian classifier with cnfg_set3',
+                 'test gaussian classifier with cnfg_set3' ],
+    'images':   ['cnfg_set3_classified_test1.png',
+                 'cnfg_set3_classified_test2.png' ],
+    'confmx':   ['cnfg_set3_eval_results_of_test1.png',
+                 'cnfg_set3_eval_results_of_test2.png']
+}
 
-test1_set1 = ['quadrant-4_q1_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-4_q1_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-4_q2_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-4_q2_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-4_q3_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-4_q3_img_w31d1_135_angle_mosaic2_test.png'
-              ]
+def check_mkdir(dir_name):
+    if not os.path.exists(dir_name):
+        os.mkdir(dir_name)
+    return dir_name
 
-test2_set1 = ['quadrant-4_q1_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-4_q1_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-4_q2_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-4_q2_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-4_q3_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-4_q3_img_w31d1_135_angle_mosaic3_test.png'
-              ]
+def collect_data(configure=None):
+    train_data = []
+    test1_data = []
+    test2_data = []
+    for gp in configure['group']:
+        if gp is not 'texture':
+            qdr = gp+'_'
+        else:
+            qdr = ''
+        for agl in configure['angle']:
+            for qf in configure[gp]:
+                train_data.append("{0}{1}_img_w31d1_{2}_angle_mosaic1_train.png".format(qdr,qf, agl))
+                test1_data.append("{0}{1}_img_w31d1_{2}_angle_mosaic2_test.png".format(qdr, qf, agl))
+                test2_data.append("{0}{1}_img_w31d1_{2}_angle_mosaic3_test.png".format(qdr, qf, agl))
 
-train_set2 = ['quadrant-16_q1_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q1_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-16_q2_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q2_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-16_q3_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q3_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-16_q4_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q4_img_w31d1_135_angle_mosaic1_train.png'
-              ]
-
-test1_set2 = ['quadrant-16_q1_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q1_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-16_q2_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q2_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-16_q3_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q3_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-16_q4_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q4_img_w31d1_135_angle_mosaic2_test.png'
-              ]
-
-test2_set2 = ['quadrant-16_q1_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q1_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-16_q2_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q2_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-16_q3_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q3_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-16_q4_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q4_img_w31d1_135_angle_mosaic3_test.png'
-              ]
-
-train_set3 = ['quadrant-16_q6_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q6_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-16_q7_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q7_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-16_q8_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q8_img_w31d1_135_angle_mosaic1_train.png',
-              'quadrant-16_q10_img_w31d1_0_angle_mosaic1_train.png',
-              'quadrant-16_q10_img_w31d1_135_angle_mosaic1_train.png'
-              ]
-
-test1_set3 = ['quadrant-16_q6_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q6_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-16_q7_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q7_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-16_q8_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q8_img_w31d1_135_angle_mosaic2_test.png',
-              'quadrant-16_q10_img_w31d1_0_angle_mosaic2_test.png',
-              'quadrant-16_q10_img_w31d1_135_angle_mosaic2_test.png'
-              ]
-
-test2_set3 = ['quadrant-16_q6_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q6_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-16_q7_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q7_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-16_q8_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q8_img_w31d1_135_angle_mosaic3_test.png',
-              'quadrant-16_q10_img_w31d1_0_angle_mosaic3_test.png',
-              'quadrant-16_q10_img_w31d1_135_angle_mosaic3_test.png'
-              ]
-
-# useful glcm features for comparision with quadrant features
-txfeatures = ['contrast', 'homogeneity', 'cluster_shade']
-
-# quadrants = 16
-quads16_features = ['q1', 'q2', 'q3', 'q4',
-                          'q5', 'q6', 'q7',
-                                'q8', 'q9',
-                                      'q10'
-                    ]
-# quadrants = 4
-quads4_features = ['q1', 'q2',
-                         'q3'
-                   ]
-
-# for quadrants = 4, the selected features are
-# q1, q2, and q3
-# ::::::::::::::::::::::::::::::::::::::::::
-# ---------------
-# |      |      |
-# |  q1  |  q2  |
-# |      |      |
-# ---------------
-# |      |      |
-# |      |  q3  |
-# |      |      |
-# ---------------
-#
-# for quadrants = 16, the selected features are
-# q1, q2, q3, ... q10
-#::::::::::::::::::::::::::::::::::::::::::::
-# -----------------------------
-# |      |      |      |      |
-# |  q1  |  q2  |  q3  |  q4  |
-# |      |      |      |      |
-# -----------------------------
-# |      |      |      |      |
-# |      |  q5  |  q6  |  q7  |
-# |      |      |      |      |
-# -----------------------------
-# |      |      |      |      |
-# |      |      |  q8  |  q9  |
-# |      |      |      |      |
-# -----------------------------
-# |      |      |      |      |
-# |      |      |      |  q10 |
-# |      |      |      |      |
-# -----------------------------
+    return train_data, test1_data, test2_data
 
 # load all training images, stack them up
-def train_loader(datalist=None):
+def train_loader(train_dir='./data/train', datalist=None):
     train_imgs = []
     for name in datalist:
         data = cv2.imread(os.path.join(train_dir, name),
@@ -215,7 +143,7 @@ def train_loader(datalist=None):
 
 
 # load all training images, stack them up
-def test_loader(datalist=None):
+def test_loader(test_dir='./data/test', datalist=None):
     test_imgs = []
     for name in datalist:
         data = cv2.imread(os.path.join(test_dir, name),
@@ -234,38 +162,7 @@ def readmat(data_dir='./data',filename=None):
 
     return train_contents[basename]
 
-# visualize each GLCM for all textures
-# def show_texture_glcm_image(texturelist=None, angles=None,
-#                             data_dir='./data',output_dir='./output'):
-#
-#     if angles is None:
-#         angles = ['0', '45', '90', '135']
-#
-#     if texturelist is not None:
-#         texture_keys = texturelist.keys()
-#         for texture in texture_keys:
-#             saved_file = "{}_GLCM_visual.png".format(texture)
-#
-#             fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 9))
-#             mathtitle = r'$^\circ$'
-#             cmap = plt.get_cmap('jet')
-#             plt.suptitle("{0}_GLCM_imgs".format(texture), fontsize=14)
-#             i = 0
-#             for row in axes:
-#                 for ax in row:
-#                     im = ax.imshow(readmat(data_dir,textures[texture][i]), cmap=cmap)
-#                     ax.set_title("Angle {0}{1} GLCM".format(angles[i], mathtitle),
-#                                  fontsize=10)
-#                     fig.colorbar(im, ax=ax)
-#                     i += 1
-#                     fig.tight_layout()
-#
-#             plt.subplots_adjust(left=0, wspace=0.1, top=0.9)
-#             plt.savefig(os.path.join(output_dir, saved_file), dpi=100, bbox_inches='tight')
-#
-#     plt.show()
-
-# visualize texture's glcm to select 2 directions that best separate textures
+# visualize texture's glcm to select directions that best separate textures
 def show_texture_glcm_image(texturelist=None, angles=None,
                             data_dir='./data',output_dir='./output'):
 
