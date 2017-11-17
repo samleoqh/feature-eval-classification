@@ -38,6 +38,7 @@ class GaussianClassifier(object):
 
 
     def discriminant(self, feature_vector):
+        np.seterr(divide='ignore', invalid='ignore')
         disrims = np.zeros(self.num_classes)
         log_post = np.zeros(self.num_classes)
         for c in range(self.num_classes):
@@ -62,7 +63,7 @@ class GaussianClassifier(object):
         M, N = feature_images[0].shape
         self.clf_img = np.zeros([M, N])
         self.posterior_imgs = np.zeros([self.num_classes, M, N])
-
+        print("classifying the test images..........")
         for i in range(M):
             for j in range(N):
                 for k in range(self.num_features):
@@ -77,6 +78,7 @@ class GaussianClassifier(object):
     def evaluate(self, eva_mask=None, classified_image=None):
         M, N = classified_image.shape
         self.confusion_matrix = np.zeros([self.num_classes,self.num_classes],dtype=np.uint16)
+        print("computing confusion results..........")
         for i in range(M):
             for j in range(N):
                 if eva_mask[i,j] == 0:
@@ -86,9 +88,4 @@ class GaussianClassifier(object):
                 row_idx = list(self.classes).index(int(true_class))
                 col_idx = list(self.classes).index(int(estimated_class))
                 self.confusion_matrix[row_idx,col_idx] += 1
-
-
-
-
-
 

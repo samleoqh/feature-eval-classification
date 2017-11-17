@@ -93,10 +93,10 @@ cnfg_set2 = {
 }
 
 cnfg_set3 = {
-    'group':        ['quadrant-4', 'quadrant-16','texture'],
+    'group':        ['quadrant-4', 'quadrant-16'],
     'angle':        ['0','135'],
-    'quadrant-4':   [],
-    'quadrant-16':  ['q10'],
+    'quadrant-4':   ['q1'],
+    'quadrant-16':  ['q3','q7','q10'],
     'texture':      ['contrast', 'homogeneity'],
     'infor':    ['train gaussian classifier with cnfg_set3',
                  'test gaussian classifier with cnfg_set3',
@@ -105,6 +105,36 @@ cnfg_set3 = {
                  'cnfg_set3_classified_test2.png' ],
     'confmx':   ['cnfg_set3_eval_results_of_test1.png',
                  'cnfg_set3_eval_results_of_test2.png']
+}
+
+cnfg_set4 = {
+    'group':        ['quadrant-4', 'quadrant-16','texture'],
+    'angle':        ['0','135'],
+    'quadrant-4':   [],
+    'quadrant-16':  ['q10'],
+    'texture':      ['contrast', 'homogeneity'],
+    'infor':    ['train gaussian classifier with cnfg_set4',
+                 'test gaussian classifier with cnfg_set4',
+                 'test gaussian classifier with cnfg_set4' ],
+    'images':   ['cnfg_set4_classified_test1.png',
+                 'cnfg_set4_classified_test2.png' ],
+    'confmx':   ['cnfg_set4_eval_results_of_test1.png',
+                 'cnfg_set4_eval_results_of_test2.png']
+}
+
+cnfg_set5 = {
+    'group':        ['quadrant-4', 'quadrant-16'], # ['quadrant-4', 'quadrant-16','texture'],
+    'angle':        ['0'],
+    'quadrant-4':   ['q2'],
+    'quadrant-16':  ['q2','q3','q10'],
+    'texture':      ['contrast', 'homogeneity'],
+    'infor':    ['train gaussian classifier with cnfg_set5',
+                 'test gaussian classifier with cnfg_set5',
+                 'test gaussian classifier with cnfg_set5' ],
+    'images':   ['cnfg_set5_classified_test1.png',
+                 'cnfg_set5_classified_test2.png' ],
+    'confmx':   ['cnfg_set5_eval_results_of_test1.png',
+                 'cnfg_set5_eval_results_of_test2.png']
 }
 
 def check_mkdir(dir_name):
